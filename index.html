@@ -49,21 +49,21 @@
     </ul>
 
 
-    <ul>
-        <li v-for="user in filteredCustomers">
-            <span class="fname">
-                {{ user.fname }}
-            </span>
-            <span class="lname">
-                {{ user.lname }}
-            </span>
-        </li>
-    </ul>
+    <!--<ul>-->
+        <!--<li v-for="user in filteredCustomers">-->
+            <!--<span class="fname">-->
+                <!--{{ user.fname }}-->
+            <!--</span>-->
+            <!--<span class="lname">-->
+                <!--{{ user.lname }}-->
+            <!--</span>-->
+        <!--</li>-->
+    <!--</ul>-->
 
 
     <paginate
             name="users"
-            :list="filtered_users"
+            :list="filteredCustomers"
             :per="5"
     >
 
