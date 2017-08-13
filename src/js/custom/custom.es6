@@ -270,6 +270,9 @@ let app4 = new Vue({
                 filter.value = {};
             })
 
+
+            self.search = '';
+
         }
 
     },
