@@ -2,7 +2,7 @@ let app4 = new Vue({
     el: '#app-4',
 
     components: {
-        Multiselect: window.VueMultiselect.default,
+            Multiselect: window.VueMultiselect.default,
         VPaginator: VuePaginator
     },
 
@@ -32,6 +32,11 @@ let app4 = new Vue({
                 options: []
             }
         ],
+
+        filter_letter: '',
+
+
+        alphabet_filter_arr: [],
 
 
         filtered_users: [],
@@ -136,6 +141,38 @@ let app4 = new Vue({
                     name: 'Service 1',
                     slug: 'service-1'
                 }
+            },
+            {
+                fname: 'Raymond',
+                lname: 'Ross',
+                office: {
+                    name: 'Office 3',
+                    slug: 'office-3'
+                },
+                position: {
+                    name: 'Position 4',
+                    slug: 'position-4'
+                },
+                services: {
+                    name: 'Service 6',
+                    slug: 'service-6'
+                }
+            },
+            {
+                fname: 'Annette',
+                lname: 'Reed',
+                office: {
+                    name: 'Office 4',
+                    slug: 'office-3'
+                },
+                position: {
+                    name: 'Position 2',
+                    slug: 'position-2'
+                },
+                services: {
+                    name: 'Service 4',
+                    slug: 'service-4'
+                }
             }
         ]
 
@@ -175,6 +212,64 @@ let app4 = new Vue({
 
             })
 
+        },
+
+
+        alphabet_filter: function (filtered_users) {
+            let self = this;
+
+
+            //get unique letters
+            let filtered_users_letters = [];
+
+            filtered_users.forEach(function (user) {
+                if (filtered_users_letters.indexOf(user.lname.charAt(0).toLowerCase()) === -1) {
+                    filtered_users_letters.push(user.lname.charAt(0).toLowerCase())
+                }
+            });
+
+            //generate alphabet
+            let alphabet_array = [],
+                i = 'a'.charCodeAt(0),
+                j = 'z'.charCodeAt(0);
+
+            for (; i <= j; ++i) {
+                alphabet_array.push(
+                    {
+                        letter: String.fromCharCode(i),
+                        active: false
+                    }
+                );
+            }
+
+            //set active letters
+            alphabet_array.forEach(function (letter) {
+                if (filtered_users_letters.indexOf(letter.letter) > -1) {
+
+                    letter.active = true;
+                }
+            });
+
+
+            self.alphabet_filter_arr = alphabet_array;
+
+        },
+
+        setLetter: function (letter) {
+            this.filter_letter = letter;
+
+        },
+
+        clearFilters: function(){
+            let self = this;
+
+            self.filter_letter = '';
+
+
+            self.filters.forEach(function(filter){
+                filter.value = {};
+            })
+
         }
 
     },
@@ -183,6 +278,8 @@ let app4 = new Vue({
 
         filteredCustomers: function () {
             let self = this;
+
+            console.log(self.filter_letter);
 
             // self.filteredOptions();
 
@@ -193,7 +290,7 @@ let app4 = new Vue({
             });
 
 
-            //user filter
+            //meta filter
             self.filters.forEach(function (filter) {
 
                 if (filter.value.hasOwnProperty('slug') && filter.value.slug != 'all') {
@@ -205,13 +302,26 @@ let app4 = new Vue({
 
             });
 
-            //options filter
+            //letter filter
+            if (self.filter_letter) {
+                self.filtered_users = self.filtered_users.filter(function (user) {
+                    return (user.lname.charAt(0).toLowerCase() == self.filter_letter);
+                });
+            }
+
+
+            //update meta filter options
             self.filteredOptions(self.filters, self.filtered_users);
+
+
+            //update alphabet filter
+            self.alphabet_filter(self.filtered_users);
 
 
             return self.filtered_users;
         }
 
+
     }
 
-})
+});

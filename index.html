@@ -18,6 +18,8 @@
 
 <div id="app-4">
 
+    <button v-on:click="clearFilters">View all</button>
+
     <input type="text" v-model="search" placeholder="Search title.."/>
 
     <ul>
@@ -35,6 +37,17 @@
     </ul>
 
 
+    <ul>
+        <template v-for="letter in alphabet_filter_arr">
+            <li v-if="letter.active" v-on:click="setLetter(letter.letter)" class="active" style="color: red;">
+                {{ letter.letter }}
+            </li>
+            <li v-else>
+                {{ letter.letter }}
+            </li>
+        </template>
+    </ul>
+
 
     <ul>
         <li v-for="user in filteredCustomers">
@@ -45,10 +58,6 @@
                 {{ user.lname }}
             </span>
         </li>
-    </ul>
-
-    <ul>
-
     </ul>
 
 
