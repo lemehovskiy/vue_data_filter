@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+
+    <link rel="stylesheet" href="src/css/vue-multiselect.min.css">
+</head>
+
+<body>
+
+
+
+
+<div id="app-4">
+
+    <input type="text" v-model="search" placeholder="Search title.."/>
+
+    <ul>
+        <li v-for="user in filteredCustomers">
+            <span class="fname">
+                {{ user.fname }}
+            </span>
+            <span class="lname">
+                {{ user.lname }}
+            </span>
+        </li>
+    </ul>
+
+
+
+
+    <ul>
+        <li v-for="filter in filters">
+            <multiselect
+                    v-model="filter.value"
+                    :placeholder="filter.placeholder"
+                    :options="filter.options"
+                    :allow-empty="false"
+                    deselect-label=""
+                    label="name"
+                    track-by="name">
+            </multiselect>
+        </li>
+    </ul>
+
+</div>
+
+
+
+
+<script src="build/js/vendors.min.js"></script>
+<script src="build/js/custom.min.js"></script>
+
+</body>
+</html>
