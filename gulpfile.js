@@ -45,8 +45,11 @@ gulp.task('vendorsJs', function() {
     return streamqueue({ objectMode: true },
         gulp.src('./src/js/vendor/vue.js'),
         gulp.src('./src/js/vendor/vue-multiselect.min.js'),
-        gulp.src('./src/js/vendor/lodash.min.js'),
-        gulp.src('./src/js/vendor/jquery-3.2.1.min.js')
+        // gulp.src('./src/js/vendor/lodash.min.js'),
+        gulp.src('./src/js/vendor/jquery-3.2.1.min.js'),
+        gulp.src('./src/js/vendor/vue-paginate.min.js')
+
+
     )
 
         .pipe(plumber({

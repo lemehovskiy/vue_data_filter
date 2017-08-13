@@ -2,7 +2,8 @@ let app4 = new Vue({
     el: '#app-4',
 
     components: {
-        Multiselect: window.VueMultiselect.default
+        Multiselect: window.VueMultiselect.default,
+        VPaginator: VuePaginator
     },
 
     data: {
@@ -34,6 +35,7 @@ let app4 = new Vue({
 
 
         filtered_users: [],
+        paginate: ['users'],
 
 
         users: [
@@ -146,7 +148,7 @@ let app4 = new Vue({
             // console.log(filters);
 
 
-            filters.forEach(function(filter){
+            filters.forEach(function (filter) {
 
                 let distinct_filter_options = [{
                     slug: 'all',
@@ -174,6 +176,7 @@ let app4 = new Vue({
             })
 
         }
+
     },
 
     computed: {
@@ -183,10 +186,9 @@ let app4 = new Vue({
 
             // self.filteredOptions();
 
-            self.filtered_users = this.users;
 
             //search by fname || lname
-            self.filtered_users = self.filtered_users.filter(function (user) {
+            self.filtered_users = self.users.filter(function (user) {
                 return (user.fname.toLowerCase().indexOf(self.search.toLowerCase()) >= 0 || user.lname.toLowerCase().indexOf(self.search.toLowerCase()) >= 0);
             });
 
@@ -195,7 +197,7 @@ let app4 = new Vue({
             self.filters.forEach(function (filter) {
 
                 if (filter.value.hasOwnProperty('slug') && filter.value.slug != 'all') {
-                    self.filtered_users = self.filtered_users.filter(function (user) {
+                    self.filtered_users = self.users.filter(function (user) {
 
                         return (user[filter.name]['slug'].indexOf(filter.value.slug) >= 0);
                     });
@@ -204,32 +206,11 @@ let app4 = new Vue({
             });
 
             //options filter
-
             self.filteredOptions(self.filters, self.filtered_users);
-
 
 
             return self.filtered_users;
         }
-
-
-        // filteredOptions: function () {
-        //     console.log("1111");
-
-            // let distinct_filter_options = []
-            //
-            // for (var i = 0; i < this.filtered_users.length; i++) {
-            //
-            //     if (this.filtered_users[i].slug in distinct_filter_options) {
-            //
-            //         distinct_filter_options.push(this.filtered_users[i].slug)
-            //     }
-            // }
-
-            // console.log(distinct_filter_options);
-
-        // }
-
 
     }
 

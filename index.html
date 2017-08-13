@@ -21,20 +21,6 @@
     <input type="text" v-model="search" placeholder="Search title.."/>
 
     <ul>
-        <li v-for="user in filteredCustomers">
-            <span class="fname">
-                {{ user.fname }}
-            </span>
-            <span class="lname">
-                {{ user.lname }}
-            </span>
-        </li>
-    </ul>
-
-
-
-
-    <ul>
         <li v-for="filter in filters">
             <multiselect
                     v-model="filter.value"
@@ -48,12 +34,61 @@
         </li>
     </ul>
 
+
+
+    <ul>
+        <li v-for="user in filteredCustomers">
+            <span class="fname">
+                {{ user.fname }}
+            </span>
+            <span class="lname">
+                {{ user.lname }}
+            </span>
+        </li>
+    </ul>
+
+    <ul>
+
+    </ul>
+
+
+    <paginate
+            name="users"
+            :list="filtered_users"
+            :per="5"
+    >
+
+        <li v-for="user in paginated('users')">
+            <span class="fname">
+                {{ user.fname }}
+            </span>
+            <span class="lname">
+                {{ user.lname }}
+            </span>
+        </li>
+    </paginate>
+
+
+    <paginate-links
+            for="users"
+            :limit="2"
+            :show-step-links="true"
+            :step-links="{
+                next: 'Next',
+                prev: 'Prev'
+            }"
+    >
+
+    </paginate-links>
+
+
 </div>
 
 
 
 
 <script src="build/js/vendors.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vuejs-paginator/2.0.0/vuejs-paginator.js"></script>
 <script src="build/js/custom.min.js"></script>
 
 </body>
