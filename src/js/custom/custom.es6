@@ -2,7 +2,7 @@ let app4 = new Vue({
     el: '#app-4',
 
     components: {
-            Multiselect: window.VueMultiselect.default,
+        Multiselect: window.VueMultiselect.default,
         VPaginator: VuePaginator
     },
 
@@ -163,7 +163,7 @@ let app4 = new Vue({
                 lname: 'Reed',
                 office: {
                     name: 'Office 4',
-                    slug: 'office-3'
+                    slug: 'office-4'
                 },
                 position: {
                     name: 'Position 2',
@@ -284,11 +284,11 @@ let app4 = new Vue({
 
             console.log(self.filter_letter);
 
-            // self.filteredOptions();
+            self.filtered_users = self.users;
 
 
             //search by fname || lname
-            self.filtered_users = self.users.filter(function (user) {
+            self.filtered_users = self.filtered_users.filter(function (user) {
                 return (user.fname.toLowerCase().indexOf(self.search.toLowerCase()) >= 0 || user.lname.toLowerCase().indexOf(self.search.toLowerCase()) >= 0);
             });
 
@@ -297,7 +297,7 @@ let app4 = new Vue({
             self.filters.forEach(function (filter) {
 
                 if (filter.value.hasOwnProperty('slug') && filter.value.slug != 'all') {
-                    self.filtered_users = self.users.filter(function (user) {
+                    self.filtered_users = self.filtered_users.filter(function (user) {
 
                         return (user[filter.name]['slug'].indexOf(filter.value.slug) >= 0);
                     });

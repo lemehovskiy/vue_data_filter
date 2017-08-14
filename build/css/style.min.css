@@ -1,0 +1,114 @@
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,700");
+* {
+  box-sizing: border-box; }
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after {
+  content: '';
+  content: none; }
+
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+input:focus, button:focus {
+  outline: none; }
+
+button {
+  cursor: pointer; }
+
+body {
+  font-family: 'Raleway', sans-serif; }
+
+section.data-filter {
+  padding: 0 15px; }
+  section.data-filter .container {
+    max-width: 1000px;
+    margin: auto; }
+  section.data-filter .input-filters {
+    position: relative;
+    display: flex;
+    margin: 0 -10px; }
+    section.data-filter .input-filters .search-input, section.data-filter .input-filters .view-all-btn {
+      min-height: 40px;
+      display: block;
+      padding: 2px 40px 0 13px;
+      border-radius: 5px;
+      border: 1px solid #e8e8e8;
+      background: #fff;
+      font-size: 14px;
+      font-family: 'Raleway', sans-serif; }
+    section.data-filter .input-filters .view-all-btn {
+      min-height: 40px;
+      display: block;
+      padding: 2px 13px;
+      border-radius: 5px;
+      border: 1px solid #e8e8e8;
+      font-size: 14px;
+      font-family: 'Raleway', sans-serif;
+      background: #408ef7;
+      color: white;
+      font-weight: 700; }
+    section.data-filter .input-filters .col {
+      padding: 10px 10px 0; }
+  section.data-filter .alphabet-filter {
+    text-align: center;
+    margin: 40px 0 0; }
+    section.data-filter .alphabet-filter li {
+      padding: 10px 10px 0;
+      font-size: 20px;
+      font-weight: 300;
+      text-transform: uppercase;
+      display: inline-block; }
+      section.data-filter .alphabet-filter li:not(.active) {
+        opacity: .2; }
+      section.data-filter .alphabet-filter li.active {
+        cursor: pointer;
+        transition: .5s; }
+        section.data-filter .alphabet-filter li.active:hover {
+          color: #408ef7; }
+  section.data-filter .filter-results {
+    width: 100%;
+    margin: 40px 0 0; }
+    section.data-filter .filter-results th {
+      font-weight: 700; }
+    section.data-filter .filter-results td {
+      padding: 10px; }
+  section.data-filter .paginate-links {
+    display: flex;
+    margin: 20px 0 0;
+    float: right; }
+    section.data-filter .paginate-links li {
+      padding: 5px;
+      cursor: pointer;
+      transition: .5s; }
+      section.data-filter .paginate-links li.disabled {
+        cursor: not-allowed; }
+      section.data-filter .paginate-links li.active, section.data-filter .paginate-links li:hover {
+        color: #408ef7; }
+
+/*# sourceMappingURL=style.min.css.map */

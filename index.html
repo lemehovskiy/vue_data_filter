@@ -9,92 +9,115 @@
 
 
     <link rel="stylesheet" href="src/css/vue-multiselect.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" href="build/css/style.min.css">
+
 </head>
 
 <body>
 
 
+<section class="data-filter">
+
+    <div class="container">
+
+        <div id="app-4">
 
 
-<div id="app-4">
+            <div class="input-filters">
+                <div class="col">
+                    <input type="text" v-model="search" class="search-input" placeholder="Search"/>
+                </div>
+                <div class="col" v-for="filter in filters">
+                    <multiselect
+                            v-model="filter.value"
+                            :placeholder="filter.placeholder"
+                            :options="filter.options"
+                            :allow-empty="false"
+                            deselect-label=""
+                            :show-labels="false"
+                            label="name"
+                            track-by="name">
+                    </multiselect>
+                </div>
 
-    <button v-on:click="clearFilters">View all</button>
-
-    <input type="text" v-model="search" placeholder="Search title.."/>
-
-    <ul>
-        <li v-for="filter in filters">
-            <multiselect
-                    v-model="filter.value"
-                    :placeholder="filter.placeholder"
-                    :options="filter.options"
-                    :allow-empty="false"
-                    deselect-label=""
-                    label="name"
-                    track-by="name">
-            </multiselect>
-        </li>
-    </ul>
-
-
-    <ul>
-        <template v-for="letter in alphabet_filter_arr">
-            <li v-if="letter.active" v-on:click="setLetter(letter.letter)" class="active" style="color: red;">
-                {{ letter.letter }}
-            </li>
-            <li v-else>
-                {{ letter.letter }}
-            </li>
-        </template>
-    </ul>
+                <div class="col">
+                    <button class="view-all-btn" v-on:click="clearFilters">View all</button>
+                </div>
+            </div>
 
 
-    <!--<ul>-->
-        <!--<li v-for="user in filteredCustomers">-->
-            <!--<span class="fname">-->
-                <!--{{ user.fname }}-->
-            <!--</span>-->
-            <!--<span class="lname">-->
-                <!--{{ user.lname }}-->
-            <!--</span>-->
-        <!--</li>-->
-    <!--</ul>-->
+            <ul class="alphabet-filter">
+                <template v-for="letter in alphabet_filter_arr">
+                    <li v-if="letter.active" v-on:click="setLetter(letter.letter)" class="active">
+                        {{ letter.letter }}
+                    </li>
+                    <li v-else>
+                        {{ letter.letter }}
+                    </li>
+                </template>
+            </ul>
 
 
-    <paginate
-            name="users"
-            :list="filteredCustomers"
-            :per="5"
-    >
+            <table class="table filter-results">
 
-        <li v-for="user in paginated('users')">
-            <span class="fname">
-                {{ user.fname }}
-            </span>
-            <span class="lname">
-                {{ user.lname }}
-            </span>
-        </li>
-    </paginate>
+                <thead>
+                    <tr>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Office
+                        </th>
+                        <th>
+                            Position
+                        </th>
+                        <th>
+                            Services
+                        </th>
+                    </tr>
+                </thead>
+                <paginate
+                        name="users"
+                        :list="filteredCustomers"
+                        :per="5"
+                >
+
+                    <tr v-for="user in paginated('users')">
+                        <td class="name">
+                            {{ user.fname }} {{ user.lname }}
+                        </td>
+                        <td class="office">
+                            {{ user.office.name}}
+                        </td>
+                        <td class="position">
+                            {{ user.position.name}}
+                        </td>
+                        <td class="services">
+                            {{ user.services.name}}
+                        </td>
+                    </tr>
+                </paginate>
+            </table>
 
 
-    <paginate-links
-            for="users"
-            :limit="2"
-            :show-step-links="true"
-            :step-links="{
+            <paginate-links
+                    for="users"
+                    :limit="2"
+                    :show-step-links="true"
+                    :step-links="{
                 next: 'Next',
                 prev: 'Prev'
             }"
-    >
+            >
 
-    </paginate-links>
-
-
-</div>
+            </paginate-links>
 
 
+        </div>
 
+    </div>
+</section>
 
 <script src="build/js/vendors.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vuejs-paginator/2.0.0/vuejs-paginator.js"></script>
