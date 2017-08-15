@@ -180,39 +180,36 @@ let app4 = new Vue({
 
     },
     methods: {
-        filteredOptions: function (filters, filtered_users) {
+        filteredOptions: function (filter, filtered_users) {
 
             let self = this;
 
             // console.log(filters);
 
 
-            filters.forEach(function (filter) {
+            let distinct_filter_options = [{
+                slug: 'all',
+                name: 'All'
+            }];
 
-                let distinct_filter_options = [{
-                    slug: 'all',
-                    name: 'All'
-                }];
+            let uniq_values_arr_helper = [];
 
-                let uniq_values_arr_helper = [];
+            for (let i = 0; i < filtered_users.length; i++) {
 
-                for (let i = 0; i < filtered_users.length; i++) {
+                if (uniq_values_arr_helper.indexOf(filtered_users[i][filter.name]['slug']) === -1) {
 
-                    if (uniq_values_arr_helper.indexOf(filtered_users[i][filter.name]['slug']) === -1) {
+                    uniq_values_arr_helper.push(filtered_users[i][filter.name]['slug']);
 
-                        uniq_values_arr_helper.push(filtered_users[i][filter.name]['slug']);
-
-                        distinct_filter_options.push({
-                            name: filtered_users[i][filter.name]['name'],
-                            slug: filtered_users[i][filter.name]['slug']
-                        })
-                    }
+                    distinct_filter_options.push({
+                        name: filtered_users[i][filter.name]['name'],
+                        slug: filtered_users[i][filter.name]['slug']
+                    })
                 }
+            }
 
 
-                filter.options = distinct_filter_options;
+            filter.options = distinct_filter_options;
 
-            })
 
         },
 
@@ -262,13 +259,13 @@ let app4 = new Vue({
 
         },
 
-        clearFilters: function(){
+        clearFilters: function () {
             let self = this;
 
             self.filter_letter = '';
 
 
-            self.filters.forEach(function(filter){
+            self.filters.forEach(function (filter) {
                 filter.value = {};
             })
 
@@ -298,6 +295,9 @@ let app4 = new Vue({
             //meta filter
             self.filters.forEach(function (filter) {
 
+                //update meta filter options
+                self.filteredOptions(filter, self.filtered_users);
+
                 if (filter.value.hasOwnProperty('slug') && filter.value.slug != 'all') {
                     self.filtered_users = self.filtered_users.filter(function (user) {
 
@@ -310,17 +310,12 @@ let app4 = new Vue({
             //update alphabet filter before apply
             self.alphabet_filter(self.filtered_users);
 
-            //letter filter
+            //apply letter filter
             if (self.filter_letter) {
                 self.filtered_users = self.filtered_users.filter(function (user) {
                     return (user.lname.charAt(0).toLowerCase() == self.filter_letter);
                 });
             }
-
-
-            //update meta filter options
-            self.filteredOptions(self.filters, self.filtered_users);
-
 
 
             return self.filtered_users;
