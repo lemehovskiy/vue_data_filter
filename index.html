@@ -49,9 +49,14 @@
 
             <ul class="alphabet-filter">
                 <template v-for="letter in alphabet_filter_arr">
-                    <li v-if="letter.active" v-on:click="setLetter(letter.letter)" class="active">
+                    <li v-if="filter_letter === letter.letter" class="current">
                         {{ letter.letter }}
                     </li>
+
+                    <li v-else-if="letter.active" v-on:click="setLetter(letter.letter)" class="active">
+                        {{ letter.letter }}
+                    </li>
+
                     <li v-else>
                         {{ letter.letter }}
                     </li>

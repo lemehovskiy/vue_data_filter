@@ -83,12 +83,15 @@ section.data-filter {
       font-size: 20px;
       font-weight: 300;
       text-transform: uppercase;
-      display: inline-block; }
-      section.data-filter .alphabet-filter li:not(.active) {
-        opacity: .2; }
+      display: inline-block;
+      opacity: .2; }
+      section.data-filter .alphabet-filter li.current {
+        color: #408ef7;
+        opacity: 1; }
       section.data-filter .alphabet-filter li.active {
         cursor: pointer;
-        transition: .5s; }
+        transition: .5s;
+        opacity: 1; }
         section.data-filter .alphabet-filter li.active:hover {
           color: #408ef7; }
   section.data-filter .filter-results {

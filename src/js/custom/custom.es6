@@ -10,6 +10,8 @@ let app4 = new Vue({
 
         search: '',
 
+        isActive: false,
+
         filters: [
             {
                 name: 'position',
@@ -305,6 +307,9 @@ let app4 = new Vue({
 
             });
 
+            //update alphabet filter before apply
+            self.alphabet_filter(self.filtered_users);
+
             //letter filter
             if (self.filter_letter) {
                 self.filtered_users = self.filtered_users.filter(function (user) {
@@ -316,9 +321,6 @@ let app4 = new Vue({
             //update meta filter options
             self.filteredOptions(self.filters, self.filtered_users);
 
-
-            //update alphabet filter
-            self.alphabet_filter(self.filtered_users);
 
 
             return self.filtered_users;

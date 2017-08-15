@@ -63,14 +63,17 @@ section.data-filter {
       font-weight: 300;
       text-transform: uppercase;
       display: inline-block;
+      opacity: .2;
 
-      &:not(.active) {
-        opacity: .2;
+      &.current {
+        color: $main-blue;
+        opacity: 1;
       }
 
       &.active {
         cursor: pointer;
         transition: .5s;
+        opacity: 1;
 
         &:hover {
           color: $main-blue;
