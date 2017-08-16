@@ -30,6 +30,7 @@
                 </div>
                 <div class="col" v-for="filter in filters">
                     <multiselect
+                            :id="filter.name"
                             v-model="filter.value"
                             :placeholder="filter.placeholder"
                             :options="filter.options"
@@ -37,7 +38,8 @@
                             deselect-label=""
                             :show-labels="false"
                             label="name"
-                            track-by="name">
+                            track-by="name"
+                            @select="onFilterSelect">
                     </multiselect>
                 </div>
 

@@ -33,6 +33,8 @@ let app4 = new Vue({
             }
         ],
 
+        last_filter_name: '',
+
         filter_letter: '',
 
 
@@ -178,6 +180,12 @@ let app4 = new Vue({
 
     },
     methods: {
+
+        onFilterSelect: function(selectedOption, id){
+
+            this.last_filter_name = id;
+        },
+
         filteredOptions: function (filters, filtered_users) {
 
             let self = this;
@@ -186,6 +194,8 @@ let app4 = new Vue({
 
 
             filters.forEach(function (filter) {
+
+                if (filter.name == self.last_filter_name) return;
 
                 let distinct_filter_options = [{
                     slug: 'all',
