@@ -282,8 +282,6 @@ let app4 = new Vue({
         filteredCustomers: function () {
             let self = this;
 
-            console.log(self.filter_letter);
-
             self.filtered_users = self.users;
 
 
