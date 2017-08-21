@@ -34,12 +34,13 @@
                             v-model="filter.value"
                             :placeholder="filter.placeholder"
                             :options="filter.options"
-                            :allow-empty="false"
+                            :allow-empty="true"
+                            :hide-selected="true"
                             deselect-label=""
                             :show-labels="false"
                             label="name"
                             track-by="name"
-                            @select="onFilterSelect">
+                            >
                     </multiselect>
                 </div>
 

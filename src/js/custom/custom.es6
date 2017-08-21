@@ -13,27 +13,26 @@ let app4 = new Vue({
         filters: [
             {
                 name: 'position',
-                value: {},
+                value: null,
                 placeholder: 'Select position',
                 options: []
             },
 
             {
                 name: 'office',
-                value: {},
+                value: null,
                 placeholder: 'Select office',
                 options: []
             },
 
             {
                 name: 'services',
-                value: {},
+                value: null,
                 placeholder: 'Select services',
                 options: []
             }
         ],
 
-        last_filter_name: '',
 
         filter_letter: '',
 
@@ -181,21 +180,12 @@ let app4 = new Vue({
     },
     methods: {
 
-        onFilterSelect: function(selectedOption, id){
-
-            this.last_filter_name = id;
-        },
 
         filteredOptions: function (filters, filtered_users) {
 
             let self = this;
 
-            // console.log(filters);
-
-
             filters.forEach(function (filter) {
-
-                if (filter.name == self.last_filter_name && filter.value.slug != 'all') return;
 
                 let distinct_filter_options = [{
                     slug: 'all',
@@ -303,6 +293,8 @@ let app4 = new Vue({
 
             //meta filter
             self.filters.forEach(function (filter) {
+
+                if (filter.value == null) return;
 
                 if (filter.value.hasOwnProperty('slug') && filter.value.slug != 'all') {
                     self.filtered_users = self.filtered_users.filter(function (user) {
